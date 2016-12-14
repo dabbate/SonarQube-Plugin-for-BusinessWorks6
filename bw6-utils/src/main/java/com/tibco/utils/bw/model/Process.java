@@ -45,6 +45,10 @@ public class Process {
 	protected int catchcount = 0;
 	protected int eventHandler = 0;
 	protected NamedNodeMap namedNodeMap;
+	// protected properties to count how many operations does a process expose. Operations
+	// can be exposed either as 'pick' or as 'receive'
+	protected int onMessageOperationCount = 0;
+	protected int receiveOperationCount = 0;
 
 	public Map<String, String> getSynonymsGroupMapping() {
 		return synonymsGroupMapping;
@@ -386,6 +390,8 @@ public class Process {
 					Operation operation = new Operation(operationName);
 					service.getOperations().put(operationName, operation);
 				}
+				onMessageOperationCount++;
+				
 				parseProcess(transitions.item(i).getChildNodes());
 				//parseService(transitions.item(i));
 				//do something related to reference and service
@@ -530,6 +536,9 @@ public class Process {
 		if(parent.getNodeName().equals("bpws:receive")){
 			String serviceName =  parent.getAttributes().getNamedItem("partnerLink").getNodeValue();
 			String operationName = parent.getAttributes().getNamedItem("operation").getNodeValue();
+
+			
+			
 			if(services.get(serviceName) == null){
 				String namespacePrefix = parent.getAttributes().getNamedItem("portType").getNodeValue();
 				namespacePrefix = namespacePrefix.substring(0, namespacePrefix.indexOf(":"));
@@ -544,6 +553,8 @@ public class Process {
 				Operation operation = new Operation(operationName);
 				service.getOperations().put(operationName, operation);
 			}
+			receiveOperationCount++;
+			
 			Activity activity = new Activity();
 			activity.setNode(parent);
 			activity.setName(parent.getAttributes().getNamedItem("name").getTextContent());
@@ -628,4 +639,22 @@ public class Process {
 	public List<EventSource> getEventSources(){
 		return eventSources;
 	}
+	
+	public int getOnMessageOperationCount() {
+		return onMessageOperationCount;
+	}
+
+	public void setOnMessageOperationCount(int pickcount) {
+		this.onMessageOperationCount = pickcount;
+	}
+
+	public int getReceiveOperationCount() {
+		return receiveOperationCount;
+	}
+
+	public void setReceiveOperationCount(int receivecount) {
+		this.receiveOperationCount = receivecount;
+	}
+
+	
 }

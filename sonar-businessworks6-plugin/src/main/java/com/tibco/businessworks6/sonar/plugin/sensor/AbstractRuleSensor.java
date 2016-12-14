@@ -57,6 +57,7 @@ import com.tibco.businessworks6.sonar.plugin.check.process.MultipleTransitionChe
 //REMOVE: DA - 2016_11_08
 //import com.tibco.businessworks6.sonar.plugin.check.process.NoDescriptionCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.NumberofActivitiesCheck;
+import com.tibco.businessworks6.sonar.plugin.check.process.NumberofOperationsCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.NumberofServicesCheck;
 //REMOVE: DA - 2016_11_08
 //import com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck;
@@ -114,7 +115,8 @@ public abstract class AbstractRuleSensor extends AbstractSensor {
 // REMOVE: DA - 2016_11_08		
 //		allChecks.add(SubProcessInlineCheck.class);
 // ADD: DA - 2016_11_10
-		allChecks.add(JDBCThreadPool.class);		
+		allChecks.add(JDBCThreadPool.class);	
+		allChecks.add(NumberofOperationsCheck.class);
 		checks.addAnnotatedChecks(allChecks);
 	}
 

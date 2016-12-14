@@ -38,7 +38,8 @@ public final class ProcessRuleDefinition implements RulesDefinition{
 // REMOVE: DA - 2016_11_08			
 //			com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck.class
 // ADD: DA - 2016_11_10 - JDBCThreadPool
-			com.tibco.businessworks6.sonar.plugin.check.process.JDBCThreadPool.class
+			com.tibco.businessworks6.sonar.plugin.check.process.JDBCThreadPool.class,
+			com.tibco.businessworks6.sonar.plugin.check.process.NumberofOperationsCheck.class
 		};
 	
 	protected String rulesDefinitionFilePath() {
