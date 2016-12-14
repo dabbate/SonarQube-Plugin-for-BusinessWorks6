@@ -16,6 +16,10 @@ public abstract class ProcessNode {
 	protected String sqlStatement;
 	protected boolean jdbcTimeout;
 	protected boolean jdbcMaxRows;
+// ADD: DA - 2016_11_08
+	protected boolean jdbcThreadPool;
+	
+	
 	public boolean isJdbcTimeout() {
 		return jdbcTimeout;
 	}
@@ -32,7 +36,15 @@ public abstract class ProcessNode {
 		this.jdbcMaxRows = jdbcMaxRows;
 	}
 
-	
+	// ADD: DA - 2016_11_08
+	public boolean isJdbcThreadPool() {
+		return jdbcThreadPool;
+	}
+
+	// ADD: DA - 2016_11_08
+	public void setJdbcThreadPool(boolean jdbcThreadPool) {
+		this.jdbcThreadPool = jdbcThreadPool;
+	}
 	
 	public String getSqlStatement() {
 		return sqlStatement;
@@ -107,6 +119,9 @@ public abstract class ProcessNode {
 											this.jdbcMaxRows = true;
 										if(propertiesNodes.item(k).getAttributes().getNamedItem("timeout") != null)
 											this.jdbcTimeout = true;
+// ADD : DA - 2016_11_08 - added fetch of jdbc threadPool property
+										if(propertiesNodes.item(k).getAttributes().getNamedItem("threadPool") != null)
+											this.jdbcThreadPool = true;
 									}
 								}
 							}

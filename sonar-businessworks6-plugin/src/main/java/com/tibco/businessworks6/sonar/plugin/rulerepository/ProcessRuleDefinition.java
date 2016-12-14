@@ -14,9 +14,11 @@ public final class ProcessRuleDefinition implements RulesDefinition{
 	protected static final List<String> LANGUAGE_KEYS = ImmutableList.of("process");
 	public static List<Class> checkRules;
 	public static Class check[] = {	
-			com.tibco.businessworks6.sonar.plugin.check.process.NoDescriptionCheck.class,
+// REMOVE: DA - 2016_11_08			
+//			com.tibco.businessworks6.sonar.plugin.check.process.NoDescriptionCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.NumberofActivitiesCheck.class,
-			com.tibco.businessworks6.sonar.plugin.check.process.TransitionLabelCheck.class,
+// REMOVE: DA - 2016_11_10
+//			com.tibco.businessworks6.sonar.plugin.check.process.TransitionLabelCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.ChoiceOtherwiseCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.JDBCWildCardCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.JDBCHardCodeCheck.class,
@@ -29,11 +31,14 @@ public final class ProcessRuleDefinition implements RulesDefinition{
 			com.tibco.businessworks6.sonar.plugin.check.process.NumberofServicesCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterHttpCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterRESTCheck.class,
-			com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterJDBCÇheck.class,
+			com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterJDBCCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.CheckpointInTransation.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.JMSAcknowledgementModeCheck.class,
 			com.tibco.businessworks6.sonar.plugin.check.process.CriticalSectionCheck.class,
-			com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck.class
+// REMOVE: DA - 2016_11_08			
+//			com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck.class
+// ADD: DA - 2016_11_10 - JDBCThreadPool
+			com.tibco.businessworks6.sonar.plugin.check.process.JDBCThreadPool.class
 		};
 	
 	protected String rulesDefinitionFilePath() {

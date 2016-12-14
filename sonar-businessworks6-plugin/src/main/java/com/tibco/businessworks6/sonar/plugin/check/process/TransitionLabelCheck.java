@@ -15,8 +15,9 @@ import com.tibco.businessworks6.sonar.plugin.violation.Violation;
 import com.tibco.utils.bw.model.Process;
 import com.tibco.utils.bw.model.Transition;
 
-@Rule(key = TransitionLabelCheck.RULE_KEY, name="Transition Labels Check", priority = Priority.MAJOR, description = "This rule checks whether the transitions with the type 'Success With Condition' (XPath) have a proper label. This will improve code readability")
-@BelongsToProfile(title = ProcessSonarWayProfile.defaultProfileName, priority = Priority.MAJOR)
+// CHANGE : DA - 2016_11_10 - changed priority to INFO
+@Rule(key = TransitionLabelCheck.RULE_KEY, name="Transition Labels Check", priority = Priority.INFO, description = "This rule checks whether the transitions with the type 'Success With Condition' (XPath) have a proper label. This will improve code readability")
+@BelongsToProfile(title = ProcessSonarWayProfile.defaultProfileName, priority = Priority.INFO)
 public class TransitionLabelCheck extends AbstractProcessCheck{
 	public static final String RULE_KEY = "TransitionLabels";
 	@Override

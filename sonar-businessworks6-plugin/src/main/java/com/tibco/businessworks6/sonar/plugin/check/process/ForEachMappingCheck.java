@@ -14,6 +14,8 @@ import com.tibco.businessworks6.sonar.plugin.violation.DefaultViolation;
 import com.tibco.businessworks6.sonar.plugin.violation.Violation;
 import com.tibco.utils.bw.model.Activity;
 
+//CHANGE: DA - 2016_11_10 - new priority is Priority.INFO
+//CHANGE: DA - 2016_11_08 - new priority is Priority.MINOR
 @Rule(key = ForEachMappingCheck.RULE_KEY, name="For-Each Mapping Check", priority = Priority.INFO, description = "This rule checks the Input mappings of activities. In activity Input mapping for performance reasons, it is recommended ato use Copy-Of instead of For-Each whenever possible.")
 @BelongsToProfile(title = ProcessSonarWayProfile.defaultProfileName, priority = Priority.INFO)
 public class ForEachMappingCheck extends AbstractProcessCheck {

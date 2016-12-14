@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.sonar.api.batch.SensorContext;
+
 //import org.sonar.api.scan.filesystem.ModuleFileSystem;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
@@ -37,7 +38,7 @@ import org.sonar.api.rule.RuleKey;
 import com.google.common.annotations.VisibleForTesting;
 import com.tibco.businessworks6.sonar.plugin.check.AbstractCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterHttpCheck;
-import com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterJDBCÇheck;
+import com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterJDBCCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.CheckpointAfterRESTCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.CheckpointInTransation;
 import com.tibco.businessworks6.sonar.plugin.check.process.ChoiceOtherwiseCheck;
@@ -46,15 +47,19 @@ import com.tibco.businessworks6.sonar.plugin.check.process.DeadLockCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.ForEachGroupCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.ForEachMappingCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.JDBCHardCodeCheck;
+//ADD: DA - 2016_11_10
+import com.tibco.businessworks6.sonar.plugin.check.process.JDBCThreadPool;
 import com.tibco.businessworks6.sonar.plugin.check.process.JDBCWildCardCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.JMSAcknowledgementModeCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.JMSHardCodeCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.LogOnlyInSubprocessCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.MultipleTransitionCheck;
-import com.tibco.businessworks6.sonar.plugin.check.process.NoDescriptionCheck;
+//REMOVE: DA - 2016_11_08
+//import com.tibco.businessworks6.sonar.plugin.check.process.NoDescriptionCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.NumberofActivitiesCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.NumberofServicesCheck;
-import com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck;
+//REMOVE: DA - 2016_11_08
+//import com.tibco.businessworks6.sonar.plugin.check.process.SubProcessInlineCheck;
 import com.tibco.businessworks6.sonar.plugin.check.process.TransitionLabelCheck;
 import com.tibco.businessworks6.sonar.plugin.source.Source;
 import com.tibco.businessworks6.sonar.plugin.source.XmlSource;
@@ -85,9 +90,11 @@ public abstract class AbstractRuleSensor extends AbstractSensor {
 				repositoryKey, list);*/
 		checks = checkFactory.create(repositoryKey);
 		List<Class> allChecks = new ArrayList<Class>();
-		allChecks.add(NoDescriptionCheck.class);
+// REMOVE: DA - 2016_11_08
+//		allChecks.add(NoDescriptionCheck.class);
 		allChecks.add(NumberofActivitiesCheck.class);
-		allChecks.add(TransitionLabelCheck.class);
+// REMOVE: DA - 2016_11_10
+//		allChecks.add(TransitionLabelCheck.class);
 		allChecks.add(ChoiceOtherwiseCheck.class);
 		allChecks.add(JDBCWildCardCheck.class);
 		allChecks.add(JDBCHardCodeCheck.class);
@@ -99,12 +106,15 @@ public abstract class AbstractRuleSensor extends AbstractSensor {
 		allChecks.add(ForEachGroupCheck.class);
 		allChecks.add(NumberofServicesCheck.class);
 		allChecks.add(CheckpointAfterRESTCheck.class);
-		allChecks.add(CheckpointAfterJDBCÇheck.class);
+		allChecks.add(CheckpointAfterJDBCCheck.class);
 		allChecks.add(CheckpointAfterHttpCheck.class);
 		allChecks.add(CheckpointInTransation.class);
 		allChecks.add(JMSAcknowledgementModeCheck.class);
 		allChecks.add(CriticalSectionCheck.class);
-		allChecks.add(SubProcessInlineCheck.class);
+// REMOVE: DA - 2016_11_08		
+//		allChecks.add(SubProcessInlineCheck.class);
+// ADD: DA - 2016_11_10
+		allChecks.add(JDBCThreadPool.class);		
 		checks.addAnnotatedChecks(allChecks);
 	}
 

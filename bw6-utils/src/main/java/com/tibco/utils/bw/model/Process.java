@@ -35,21 +35,21 @@ public class Process {
 	protected Map<String, Service> services = new HashMap<String, Service>();
 	protected Map<String, Service> processReferenceServices = new HashMap<String, Service>();
 	protected Map<String, String> synonymsGroupMapping = new HashMap<String, String>();
-	
+
 
 	protected boolean hasForEachGroup;
 	protected Document processXmlDocument;
 	protected XPath xPath;
 	protected HashMap<String, Transition> transitionMap = new HashMap<String, Transition>();
-	protected int groupcount = 0; 
+	protected int groupcount = 0;
 	protected int catchcount = 0;
 	protected int eventHandler = 0;
 	protected NamedNodeMap namedNodeMap;
-	
+
 	public Map<String, String> getSynonymsGroupMapping() {
 		return synonymsGroupMapping;
 	}
-	
+
 	public boolean isHasForEachGroup() {
 		return hasForEachGroup;
 	}
@@ -253,7 +253,7 @@ public class Process {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String findActualReferenceServiceName(String referenceService){
 		String partnerLinks = "/process/partnerLinks/partnerLink";
 		try {
@@ -276,7 +276,7 @@ public class Process {
 		}
 		return referenceService;
 	}
-	
+
 	public String findReferenceServiceInline(String referenceService){
 		String partnerLinks = "/process/partnerLinks/partnerLink";
 		try {
@@ -299,7 +299,7 @@ public class Process {
 		}
 		return referenceService;
 	}
-	
+
 	public String findActualReferenceServiceProcessName(String referenceService){
 		String partnerLinks = "/process/partnerLinks/partnerLink";
 		try {
@@ -411,7 +411,7 @@ public class Process {
 				}else{
 					populateProcessReferencedService(referencedServiceName, calledOperation, namespacePrefix);
 					parseActivities(transitions.item(i));
-				}	
+				}
 
 			}
 		}
@@ -584,17 +584,19 @@ public class Process {
 				transition.setFrom(processStarter.getAttributes().getNamedItem("name").getTextContent());
 			}
 			if(processStarter.getChildNodes().item(i).getNodeName().equals("tibex:eventSource")){
-				if(processStarter.getChildNodes().item(i).getChildNodes().item(1).getAttributes().getNamedItem("activityTypeID") == null)
+
+      	if(processStarter.getChildNodes().item(i).getChildNodes().item(1).getAttributes().getNamedItem("activityTypeID") == null)
 					eventSource.setType("bw.Start");
-				else
+        else
 					eventSource.setType(processStarter.getChildNodes().item(i).getChildNodes().item(1).getAttributes().getNamedItem("activityTypeID").getNodeValue());
+
 				eventSources.add(eventSource);
 			}
 		}
 	}
 
 
-	public int countAllGroups() {	
+	public int countAllGroups() {
 		int result = 0;
 		result += getGroups().size();
 		for(Group g:getGroups()){
